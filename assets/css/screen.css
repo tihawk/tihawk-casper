@@ -1951,3 +1951,19 @@ file to add some of your own styles. Well, you've come to
 the right place. Onward!
 
  */
+
+.gh-canvas.gists-canvas {
+    display: grid;
+    grid-template-columns:
+        [full-start]
+        minmax(4vmin, auto)
+            [wide-start]
+            minmax(auto, 240px)
+                [main-start]
+                    min(1366px, calc(100% - 8vw))
+                [main-end]
+            minmax(auto, 240px)
+            [wide-end]
+        minmax(4vmin, auto)
+        [full-end] !important;
+}
