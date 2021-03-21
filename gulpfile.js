@@ -78,6 +78,7 @@ function zipper(done) {
     pump([
         src([
             '**',
+            '!_landing-template', '!_landing-template/**',
             '!node_modules', '!node_modules/**',
             '!dist', '!dist/**',
             '!yarn-error.log'

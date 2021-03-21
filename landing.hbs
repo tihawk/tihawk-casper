@@ -1,45 +1,1221 @@
-{{!< default}}
-{{!-- The tag above means: insert everything in this file
-into the {body} of the default.hbs template --}}
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="{{@site.locale}}">
+  <head>
+    <!-- Site Title-->
+    <title>Home</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="{{asset "landing/images/favicon.ico"}}" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
+    <link rel="stylesheet" href="{{asset "landing/css/bootstrap.css"}}">
+    <link rel="stylesheet" href="{{asset "landing/css/style.css"}}">
+    <link rel="stylesheet" href="{{asset "landing/css/fonts.css"}}">
+		<!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{{asset "landing/images/ie8-panel/warning_bar_0000_us.jpg"}}" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="{{asset "landing/js/html5shiv.min.js"}}"></script>
+		<![endif]-->
 
-<div class="site-header-content">
-    {{#if @site.cover_image}}
-        {{!-- This is a responsive image, it loads different sizes depending on device
-        https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-        <img class="site-header-cover"
-            srcset="{{img_url @site.cover_image size="s"}} 300w,
-                    {{img_url @site.cover_image size="m"}} 600w,
-                    {{img_url @site.cover_image size="l"}} 1000w,
-                    {{img_url @site.cover_image size="xl"}} 2000w"
-            sizes="100vw"
-            src="{{img_url @site.cover_image size="xl"}}"
-            alt=""
-        />
-    {{/if}}
-    <h1 class="site-title">
-        {{#if @site.logo}}
-            <img class="site-logo" src="{{img_url @site.logo size="m"}}" alt="{{@site.title}}" />
-        {{else}}
-            {{@site.title}}
-        {{/if}}
-    </h1>
-    <p>{{@site.description}}</p>
-</div>
-
-{{!-- The main content area --}}
-<main id="site-main" class="site-main outer">
-    <div class="inner posts">
-
-        <div class="post-feed">
-          {{#get "posts" include="tags,authors" filter="featured:true"}}
-            {{#foreach posts}}
-
-                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-                {{> "post-card"}}
-
-            {{/foreach}}
-          {{/get}}
+    {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings,
+    it should always be the last tag before the closing head tag --}}
+    {{ghost_head}}
+  </head>
+  <body>
+    <div class="preloader">
+      <div class="preloader-body">
+        <div class="cssload-container">
+          <div class="cssload-speeding-wheel"></div>
+          <p>Loading...</p>
         </div>
-
+      </div>
     </div>
-</main>
+    <!-- Page-->
+    <div class="page">
+      <!-- Page Header-->
+      <header class="page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar_half-dark" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-xl-device-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-stick-up-clone="false" data-sm-stick-up="true" data-md-stick-up="true" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true" data-lg-stick-up-offset="69px" data-xl-stick-up-offset="35px" data-xxl-stick-up-offset="35px" data-body-class="rd-navbar-static-smooth">
+            <div class="rd-navbar-inner">
+              <!-- RD Navbar Panel-->
+              <div class="rd-navbar-panel">
+                <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                <!-- RD Navbar Brand-->
+                {{!-- <div class="rd-navbar-brand"><a class="brand-name" href="index.html"><img src="{{asset "landing/images/logo-108x37.png"}}" alt="" width="108" height="37" srcset="{{asset "landing/images/logo-216x74.png"}} 2x"/></a></div> --}}
+              </div>
+              <!-- RD Navbar Nav-->
+              <div class="rd-navbar-nav-wrap">
+                <div class="rd-navbar-nav-wrap__element">
+                  {{#unless @member}}
+                    <a class="button button-gray-light-outline" href="blog/#/portal">
+                      Subscribe
+                    </a>
+                  {{else}}
+                    <a class="button button-gray-light-outline" href="blog/#/portal/account">
+                      Account
+                    </a>
+                  {{/unless}}
+                </div>
+                <ul class="rd-navbar-nav">
+                  <li class="active"><a href="#home">Home
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li>
+                  <li><a href="#about">About
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li>
+                  <li><a href="#portfolio">Projects
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li>
+                  {{!-- <li><a href="#services">Services
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li> --}}
+                  {{!-- <li><a href="#pricing">Pricing
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li> --}}
+                  {{!-- <li><a href="#clients">Clients
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li> --}}
+                  <li><a href="#blog">Latest
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li>
+                  <li><a href="{{@site.url}}/blog/">Blog
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li>
+                  <li><a href="#contacts">Contacts
+                      <!--if (navbarTexts && typeof(item.subtitle) !== 'undefined')-->
+                      <!--  span.rd-navbar-subtitle=item.subtitle--></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Slider-->
+      <section class="section" id="home">
+        <div class="swiper-container swiper-slider swiper-slider_fullheight" data-simulate-touch="false" data-loop="false" data-autoplay="50000">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide context-dark bg-overlay-dark" data-slide-bg="{{img_url @site.cover_image size="xl"}}">
+              <div class="swiper-slide-caption text-center">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                      <h2 data-caption-animate="fadeInUpSmall" data-caption-delay="100">Kiril Panayotov Blagoev</h2>
+                      <h5 class="text-width-2 block-centered" data-caption-animate="fadeInUpSmall" data-caption-delay="200">A sailor turned physicist, turned software engineer, but forever an idealist.</h5>
+                      <div class="group-lg group-middle"><a class="button button-black" data-caption-animate="fadeInUpSmall" data-caption-delay="350" href="#portfolio" data-custom-scroll-to="portfolio">See Projects</a><a class="button button-primary" data-caption-animate="fadeInUpSmall" data-caption-delay="350" href="#blog" data-custom-scroll-to="blog">Read latest</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{!-- <div class="swiper-slide context-dark bg-overlay-dark" data-slide-bg="images/slider-slide-2-1920x1080.jpg">
+              <div class="swiper-slide-caption text-center">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                      <h2 data-caption-animate="fadeInUp" data-caption-delay="100">ADVANCED UI TOOLKIT</h2>
+                      <h5 data-caption-animate="fadeInUp" data-caption-delay="300">Aurona comes with a powerful and flexible extended toolkit in addition to basic Bootstrap.</h5><a class="button button-primary" href="#" data-caption-animate="fadeInUp" data-caption-delay="400">Live demo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> --}}
+            {{!-- <div class="swiper-slide context-dark vide" data-slide-bg="video/video-bg.jpg" data-vide-bg="video/video-bg" data-vide-options="posterType: jpg">
+              <!-- RD Video-->
+              <div class="vide" data-vide-bg="video/video-bg" data-vide-options="posterType: jpg">
+                <div class="swiper-slide-caption text-center">
+                  <div class="container">
+                    <div class="row justify-content-center">
+                      <div class="col-lg-7">
+                        <h2 data-caption-animate="fadeInUpSmall" data-caption-delay="100">Built by geeks</h2>
+                        <h5 class="text-width-2 block-centered" data-caption-animate="fadeInUpSmall" data-caption-delay="200">Aurona aims to satisfy real needs of real projects. We've got a pack of tools for that.</h5>
+                        <div class="group-lg group-middle"><a class="button button-black" data-caption-animate="fadeInUpSmall" data-caption-delay="350" href="#features" data-custom-scroll-to="features">See Features</a><a class="button button-primary" data-caption-animate="fadeInUpSmall" data-caption-delay="350" href="https://www.templatemonster.com/landing-page-template/aurona-business-responsive-html-landing-page-template-68859.html" target="_blank">Buy template</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> --}}
+          </div>
+          <!-- Swiper Navigation-->
+          {{!-- <div class="swiper-button-prev linearicons-chevron-left"></div>
+          <div class="swiper-button-next linearicons-chevron-right"></div> --}}
+          <div class="swiper-pagination pagination-mobile"></div>
+        </div>
+      </section>
+
+      {{!-- <!-- Presentation-->
+      <section class="section-md bg-default text-center">
+        <div class="container">
+          <div class="row justify-content-lg-center">
+            <div class="col-lg-10 col-xl-8">
+              <h3 class="heading-decorated">Multiple Themes &<br>a Variety of Features</h3>
+              <p>Aurona is a multipurpose template optimized for various niches of business. Besides neutral classic websites you can create restaurant, hotel, sport gym website and much much more. There is also a variety of useful features that are included with this template.</p>
+            </div>
+          </div>
+          <div class="row row-50">
+            <div class="col-md-6 col-xl-4">
+              <div class="thumbnail-classic"><a href="#"><img src="{{asset "landing/images/portfolio-1-418x315.jpg"}}" alt="" width="418" height="315"/></a>
+                <div class="caption">
+                  <h5><a class="thumbnail-classic-title" href="#">Bootstrap Framework</a></h5>
+                  <p>Aurona is based on Bootstrap Framework, which makes it a nice template for any purpose.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <div class="thumbnail-classic"><a href="#"><img src="{{asset "landing/images/portfolio-2-418x315.jpg"}}" alt="" width="418" height="315"/></a>
+                <div class="caption">
+                  <h5><a class="thumbnail-classic-title" href="#">Novi Builder</a></h5>
+                  <p>Use our Novi Builder to customize and update your website within board with this template.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <div class="thumbnail-classic"><a href="#"><img src="{{asset "landing/images/portfolio-3-418x315.jpg"}}" alt="" width="418" height="315"/></a>
+                <div class="caption">
+                  <h5><a class="thumbnail-classic-title" href="#">Responsive &amp; Retina Ready</a></h5>
+                  <p>Aurona looks great on any screen resolution and on any device due to its responsiveness.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+      <!-- About us-->
+      <section class="bg-default object-wrap bg-gray-lighter" id="about">
+        <div class="section-lg">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-5">
+                {{!-- <h4 class="heading-decorated">About Kiril</h4> --}}
+                <p>Kiril P. Blagoev is a software engineer, physicist and person who posts stuff on the internet. Originally a sailor going 
+                around the world, Kiril now works from home, and travels into nature any time he decides to ponder about the universe, and humanity's
+                place in it (which he does probably more often than he should).
+                <br /><br />
+                Kiril writes blog posts on his personal blog <a class="link-primary" href="{{@site.url}}/blog">kBlagoev.com</a>, and constantly makes plans
+                to finish his many other projects, which I'm sure he will one day get to.
+                <br /><br />
+                On this page these ongoing or otherwise projects are shamelessly curated, in the hopes that they bring the joy of discovery to someone. If 
+                you find yourself engrossed in similar endeavours as the ones you've come upon here, don't forget to contact Kiril, or subscribe to his blog and 
+                share your opinions and own ideas on the subject of your interest.
+                </p>
+                {{!-- <div class="row row-30">
+                  <div class="col-xl-6">
+                    <!-- Blurb minimal-->
+                    <article class="blurb blurb-minimal">
+                      <div class="unit flex-row unit-spacing-md">
+                        <div class="unit-left">
+                          <div class="blurb-minimal__icon"><span class="icon linearicons-menu3"></span></div>
+                        </div>
+                        <div class="unit-body">
+                          <p class="blurb__title heading-6"><a href="#">Award-winning designs</a></p>
+                          <p>We have received numerous awards for our designs, concepts, and ideas.</p>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-xl-6">
+                    <!-- Blurb minimal-->
+                    <article class="blurb blurb-minimal">
+                      <div class="unit flex-row unit-spacing-md">
+                        <div class="unit-left">
+                          <div class="blurb-minimal__icon"><span class="icon linearicons-users2"></span></div>
+                        </div>
+                        <div class="unit-body">
+                          <p class="blurb__title heading-6"><a href="#">Expert team</a></p>
+                          <p>We are a team of dedicated interior design and remodeling professionals.</p>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                </div> --}}
+                {{!-- <div class="row justify-content-md-center">
+                  <div class="col-md-12">
+                          <!--Linear progress bar-->
+                          <div class="progress-linear progress-linear-modern">
+                            <div class="progress-linear-header">
+                              <p class="progress-linear-title">Dedication</p><span class="progress-linear-counter">49</span>
+                            </div>
+                            <div class="progress-linear-body">
+                              <div class="progress-linear-bar"></div>
+                            </div>
+                          </div>
+                          <!--Linear progress bar-->
+                          <div class="progress-linear progress-linear-modern">
+                            <div class="progress-linear-header">
+                              <p class="progress-linear-title">Knowledge</p><span class="progress-linear-counter">29</span>
+                            </div>
+                            <div class="progress-linear-body">
+                              <div class="progress-linear-bar"></div>
+                            </div>
+                          </div>
+                          <!--Linear progress bar-->
+                          <div class="progress-linear progress-linear-modern">
+                            <div class="progress-linear-header">
+                              <p class="progress-linear-title">Experience</p><span class="progress-linear-counter">86</span>
+                            </div>
+                            <div class="progress-linear-body">
+                              <div class="progress-linear-bar"></div>
+                            </div>
+                          </div>
+                  </div>
+                </div> --}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="object-wrap__body object-wrap__body-sizing-1 object-wrap__body-md-right bg-image" style="background-image: url({{asset "landing/images/profile-pic-2.jpg"}})"></div>
+      </section>
+
+      {{!-- <!-- Impressive Features-->
+      <section class="section-md bg-gray-lighter">
+        <div class="container">
+          <div class="row justify-content-md-center flex-lg-row-reverse align-items-lg-center justify-content-lg-between row-50">
+            <div class="col-md-9 col-lg-6">
+              <h4 class="heading-decorated">Why Choose Aurona</h4>
+              <!-- Blurb minimal-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md wow fadeIn" data-wow-delay="0.1s">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-rocket"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Made for People</a></p>
+                    <p>Aurona is built for real users that enjoy easy website development.</p>
+                  </div>
+                </div>
+              </article>
+              <!-- Blurb minimal-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md wow fadeIn" data-wow-delay="0.2s">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-equalizer"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Advanced UI Kit</a></p>
+                    <p>Aurona comes with a powerful and flexible extended toolkit in addition to basic Bootstrap.</p>
+                  </div>
+                </div>
+              </article>
+              <!-- Blurb minimal-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md wow fadeIn" data-wow-delay="0.3s">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-arrow-down-square"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Responsive & Retina Ready</a></p>
+                    <p>Aurona looks great on any screen resolution and on any device due to its responsiveness.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-7 col-lg-5">
+              <figure class="image-sizing-1"><img src="images/blog-image-1-886x668.jpg" alt="" width="886" height="668"/>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+      <!-- Call to action-->
+      {{!-- A signup call to action is displayed here, unless viewed as a logged-in member --}}
+      {{#unless @member}}
+      <section class="section section-md bg-gray-dark section-cta">
+        <div class="container">
+          <div class="row row-30 align-items-center justify-content-center justify-content-xl-between">
+            <div class="col-lg-7 col-xl-10 text-center text-xl-left">
+              <h4><span class="font-weight-bold">Want </span><br class="d-xxl-none"><span class="font-weight-normal">to be notified when I have something new to share?</span></h4>
+              <p>Join me in my never-ending exploration of the universe!</p>
+            </div>
+            <div class="col-xl-2 text-center"><a class="button button-primary" href="blog/#/portal">Subscribe</a></div>
+          </div>
+        </div>
+      </section>
+      {{/unless}}
+
+      <!-- Portfolio-->
+      <section class="section-md bg-default text-center" id="portfolio">
+        <div class="container">
+          <h4 class="heading-decorated">Projects</h4>
+          <div class="isotope-wrap row row-70">
+            <div class="col-sm-12">
+              <ul class="list-nav isotope-filters isotope-filters-horizontal">
+                <li><a class="active" data-isotope-filter="*" data-isotope-group="gallery" href="#">All</a></li>
+                <li><a data-isotope-filter="phys" data-isotope-group="gallery" href="#">Physics</a></li>
+                <li><a data-isotope-filter="maths" data-isotope-group="gallery" href="#">Recreational maths</a></li>
+                <li><a data-isotope-filter="knots" data-isotope-group="gallery" href="#">Ropework</a></li>
+                <li><a data-isotope-filter="stats" data-isotope-group="gallery" href="#">Statistics</a></li>
+                <li><a data-isotope-filter="lang" data-isotope-group="gallery" href="#">Languages</a></li>
+                <li><a data-isotope-filter="soft" data-isotope-group="gallery" href="#">Software</a></li>
+              </ul>
+              <div class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery" data-lightgallery="group">
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="knots"><a class="img-thumbnail-variant-3" href="{{@site.url}}/blog/ropework-gallery/"><img src="{{asset "landing/images/portfolio/knots-gallery.jpg"}}" alt="" width="418" height="315"/><span class="label-custom label-white">Link</span>
+                          <div class="caption"><span class="icon hover-top-element linearicons-folder-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Knots Gallery</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">blog gallery</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">A gallery of Kiril's decorative ropework</p><span class="icon arrow-right linearicons-arrow-right"></span>
+                          </div></a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="phys"><a class="img-thumbnail-variant-3" href="{{@site.url}}/flowfield/"><img src="{{asset "landing/images/portfolio/flowfield-screenshot.png"}}" alt="" width="418" height="315"/><span class="label-custom label-white">Link</span>
+                          <div class="caption"><span class="icon hover-top-element linearicons-folder-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Fieldflow</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">simulation visualisation</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">A small visualisation of particles flowing through a force field. Check out Psychedelia mode!</p><span class="icon arrow-right linearicons-arrow-right"></span>
+                          </div></a>
+                </div>
+                {{!-- <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1"><a class="img-thumbnail-variant-3" href="images/portfolio-2-1200x600.jpg" data-lightgallery="item">
+                          <figure><img src="images/portfolio-2-418x315.jpg" alt="" width="418" height="315"/>
+                          </figure>
+                          <div class="caption"><span class="icon hover-top-element linearicons-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Web Design</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">Fabricator Ltd.</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">Professional creative solutions.</p><span class="icon arrow-right linearicons-plus"></span>
+                          </div></a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1"><a class="img-thumbnail-variant-3" href="#"><img src="images/portfolio-3-418x315.jpg" alt="" width="418" height="315"/><span class="label-custom label-white">Link</span>
+                          <div class="caption"><span class="icon hover-top-element linearicons-folder-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Web Design</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">Fresh Market</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">Professional creative solutions.</p><span class="icon arrow-right linearicons-arrow-right"></span>
+                          </div></a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1"><a class="img-thumbnail-variant-3" href="images/portfolio-original-4-1920x1440.jpg" data-lightgallery="item">
+                          <figure><img src="images/portfolio-4-418x315.jpg" alt="" width="418" height="315"/>
+                          </figure>
+                          <div class="caption"><span class="icon hover-top-element linearicons-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Web Design</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">Accessories Inc.</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">Professional creative solutions.</p><span class="icon arrow-right linearicons-plus"></span>
+                          </div></a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 2"><a class="img-thumbnail-variant-3" href="#"><img src="images/portfolio-5-418x315.jpg" alt="" width="418" height="315"/><span class="label-custom label-white">Link</span>
+                          <div class="caption"><span class="icon hover-top-element linearicons-folder-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Web Development</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">CorpAdvise</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">Professional creative solutions.</p><span class="icon arrow-right linearicons-arrow-right"></span>
+                          </div></a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 2"><a class="img-thumbnail-variant-3" href="images/portfolio-original-6-1920x1280.jpg" data-lightgallery="item">
+                          <figure><img src="images/portfolio-6-418x315.jpg" alt="" width="418" height="315"/>
+                          </figure>
+                          <div class="caption"><span class="icon hover-top-element linearicons-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Web Development</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">GreenBiz</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">Professional creative solutions.</p><span class="icon arrow-right linearicons-plus"></span>
+                          </div></a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 2"><a class="img-thumbnail-variant-3" href="images/portfolio-original-7-1920x1280.jpg" data-lightgallery="item">
+                          <figure><img src="images/portfolio-7-418x315.jpg" alt="" width="418" height="315"/>
+                          </figure>
+                          <div class="caption"><span class="icon hover-top-element linearicons-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Web Development</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">InDivine</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">Professional creative solutions.</p><span class="icon arrow-right linearicons-plus"></span>
+                          </div></a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 2"><a class="img-thumbnail-variant-3" href="images/portfolio-original-8-1536x1920.jpg" data-lightgallery="item">
+                          <figure><img src="images/portfolio-8-418x315.jpg" alt="" width="418" height="315"/>
+                          </figure>
+                          <div class="caption"><span class="icon hover-top-element linearicons-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Web Development</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">InterFashion</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">Professional creative solutions.</p><span class="icon arrow-right linearicons-plus"></span>
+                          </div></a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 2"><a class="img-thumbnail-variant-3" href="images/portfolio-original-9-1567x1920.jpg" data-lightgallery="item">
+                          <figure><img src="images/portfolio-9-418x315.jpg" alt="" width="418" height="315"/>
+                          </figure>
+                          <div class="caption"><span class="icon hover-top-element linearicons-picture"></span>
+                            <ul class="list-inline-tag hover-top-element">
+                              <li>Web Development</li>
+                            </ul>
+                            <p class="heading-5 hover-top-element">Simplify</p>
+                            <div class="divider"></div>
+                            <p class="small hover-bottom-element">Professional creative solutions.</p><span class="icon arrow-right linearicons-plus"></span>
+                          </div></a>
+                </div> --}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {{!-- <!-- Working process-->
+      <section class="section-md bg-gray-lighter text-center">
+        <div class="container">
+          <h4 class="heading-decorated">Our working process</h4>
+          <div class="row row-30 justify-content-center offset-top-2">
+            <div class="col-sm-10 col-lg-6"><img src="images/home-var-2-650x495.jpg" alt="" width="650" height="495"/>
+            </div>
+            <div class="col-sm-10 col-lg-6">
+              <!-- Blurb circle-->
+              <article class="blurb blurb-circle">
+                <div class="unit flex-row unit-spacing-md wow fadeInRight" data-wow-delay="0.1s">
+                  <div class="unit-left">
+                    <div class="blurb-circle__icon"><span class="icon linearicons-feather"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6">Design creation</p>
+                    <p>Firstly, our designers create the concept of a template, which can be changed and modified.</p>
+                  </div>
+                </div>
+              </article>
+              <!-- Blurb circle-->
+              <article class="blurb blurb-circle">
+                <div class="unit flex-row unit-spacing-md wow fadeInRight" data-wow-delay="0.2s">
+                  <div class="unit-left">
+                    <div class="blurb-circle__icon"><span class="icon linearicons-menu3"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6">Development</p>
+                    <p>Then our developers begin to work on implementing the template’s final look and features.</p>
+                  </div>
+                </div>
+              </article>
+              <!-- Blurb circle-->
+              <article class="blurb blurb-circle">
+                <div class="unit flex-row unit-spacing-md wow fadeInRight" data-wow-delay="0.3s">
+                  <div class="unit-left">
+                    <div class="blurb-circle__icon"><span class="icon linearicons-bag2"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6">Testing</p>
+                    <p>Finally, our QA experts make sure that everything works perfectly just as you would expect.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+      {{!-- <!-- Call to Action-->
+      <section class="section-sm bg-accent text-center">
+        <div class="container">
+          <div class="row row-50 align-items-center justify-content-center justify-content-xl-between">
+            <div class="col-xl-8 text-xl-left">
+              <h4 class="heading-decoratedIf">If you can envision it, then we can design it. <br>Tell us more about your project!</h4>
+            </div>
+            <div class="col-xl-2 text-xl-right"><a class="button button-primary" href="#contacts" data-custom-scroll-to="contacts">Contact Us</a></div>
+          </div>
+        </div>
+      </section> --}}
+
+      {{!-- <!-- Our Services-->
+      <section class="section-md bg-gray-lighter text-center" id="services">
+        <div class="container">
+          <h4 class="heading-decorated">Our Services</h4>
+          <div class="row row-50 justify-content-md-center justify-content-lg-start text-left">
+            <div class="col-md-6 col-xl-4">
+              <!-- Blurb circle-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-pencil-ruler"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Bootstrap Framework</a></p>
+                    <p>Aurona is based on Bootstrap Framework, which makes it a nice template for any purpose.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <!-- Blurb circle-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-users"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Novi Builder</a></p>
+                    <p>Use our Novi Builder to customize and update your website within seconds after the template installation.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <!-- Blurb circle-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-wall"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Responsive & Retina Ready</a></p>
+                    <p>Aurona looks great on any screen resolution and on any device due to its responsiveness.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <!-- Blurb circle-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-apartment"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Tons of Tools for Real Needs</a></p>
+                    <p>Event calendar, bookings and schedule are just some tools that come on board with this template.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <!-- Blurb circle-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-home4"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Multiple layouts</a></p>
+                    <p>Huge number of content layouts available at zemez.io allows to assemble unique pages with great flexibility.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <!-- Blurb circle-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-pencil-ruler2"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Clean and Crispy Design</a></p>
+                    <p>Aurona is crafted by top industry leaders with love, care and customer needs in mind.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Blurb minimal-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-magic-wand"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Built For Speed</a></p>
+                    <p>Aurona is built for speed and performance. Get the best results at GTmetrix and Google PageSpeed.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Blurb minimal-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-menu3"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">Flexible and Multipurpose</a></p>
+                    <p>Aurona allows to create various websites for complex and scalable projects.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <!-- Blurb minimal-->
+              <article class="blurb blurb-minimal">
+                <div class="unit flex-row unit-spacing-md">
+                  <div class="unit-left">
+                    <div class="blurb-minimal__icon"><span class="icon linearicons-users2"></span></div>
+                  </div>
+                  <div class="unit-body">
+                    <p class="blurb__title heading-6"><a href="#">SEO Friendly</a></p>
+                    <p>Valid code and performance optimized framework make SEO easy and hassle-free.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+      {{!-- <!-- Consistency is the Key-->
+      <section class="section-md bg-default">
+        <div class="container">
+          <div class="row justify-content-md-center flex-lg-row-reverse align-items-lg-center justify-content-lg-between row-50">
+            <div class="col-md-9 col-lg-6">
+              <h3 class="heading-decorated">Consistency is the Key</h3>
+              <p>At Aurona, consistency is a key factor in web design for both visual elements and functionality. It ensures that your website looks coherent and works harmoniously across all its different elements, such as headers, footers, sidebars, and navigation bars. It also gives your users a positive experience.</p>
+            </div>
+            <div class="col-md-9 col-lg-5"><img src="images/home-variant-7-464x464.jpg" alt="" width="464" height="464"/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="text-center section-xxl fullwidth-page fullwidth-page_mod-1 bg-accent-gradient particles-js-wrap context-dark">
+        <div id="particles-js"></div>
+        <div class="container">
+          <h2>#1 Web Design Choice</h2>
+          <h5 class="text-width-2 block-centered">Make your website a lot more attractive for your regular and potential customers with Aurona.</h5>
+          <div class="group-lg group-middle"><a class="button button-black" href="https://www.templatemonster.com/landing-page-template/aurona-business-responsive-html-landing-page-template-68859.html" target="_blank">Buy template</a></div>
+        </div>
+      </section> --}}
+
+      {{!-- <!-- Core features-->
+      <section class="section-md bg-gray-lighter text-center" id="features">
+        <div class="container">
+          <h4>Core Features</h4>
+          <div class="row justify-content-center row-30">
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInLeft" data-wow-delay="0.4s">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-48-40x40.png" alt=""></div>
+                      <div class="caption">Swiper Slider</div>
+                    </div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInLeft" data-wow-delay="0.2s">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-47-38x47.png" alt=""></div>
+                      <div class="caption">Owl Carousel</div>
+                    </div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInUp">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-50-48x36.png" alt=""></div>
+                      <div class="caption">Parallax</div>
+                    </div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInRight">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-49-41x41.png" alt=""></div>
+                      <div class="caption">Video Background</div>
+                    </div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInRight" data-wow-delay="0.2s">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-57-34x34.png" alt=""></div>
+                      <div class="caption">RD Event Calendar</div>
+                    </div>
+            </div>
+            <div class="col-12 d-none d-xl-flex"></div>
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInLeft" data-wow-delay="0.4s">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-58-34x32.png" alt=""></div>
+                      <div class="caption">Mail Form</div>
+                    </div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInLeft" data-wow-delay="0.2s">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-55-40x40.png" alt=""></div>
+                      <div class="caption">Bootstrap</div>
+                    </div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2"> 
+                    <div class="blurb-mini wow fadeInUp">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-63-34x34.png" alt=""></div>
+                      <div class="caption">Gallery (Isotope) (Hover Effects)</div>
+                    </div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInRight" data-wow-delay="0.2s">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-62-38x38.png" alt=""></div>
+                      <div class="caption">Google Fonts</div>
+                    </div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2">
+                    <div class="blurb-mini wow fadeInRight" data-wow-delay="0.4s">
+                      <div class="img-wrap bg-white"><img src="images/landing/landing-69-47x18.png" alt=""></div>
+                      <div class="caption">Animate CSS, WOW Animation</div>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+      {{!-- <section class="section-lg text-center" id="pricing">
+        <div class="container">
+          <h4 class="heading-decorated">PRICING CHART</h4>
+          <div class="row row-50 justify-content-lg-center">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+              <div class="pricing-table-wrap">
+                <div class="pricing-table-custom">
+                  <h5>Available options</h5>
+                  <ul class="list-xxs small">
+                    <li>Amount of space</li>
+                    <li>Supported users</li>
+                    <li>Automatic installation</li>
+                    <li>Number of databases</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="pricing-table-wrap">
+                      <div class="pricing-table pricing-table-label">
+                        <div class="pricing-label"><span>most popular</span>
+                          <svg width="86px" height="86px" viewbox="0 0 86 86">
+                            <path d="M73.4,73.4L67.3,73l-0.8,6.2l-6-1.8l-2.1,5.9l-5.5-3l-3.2,5.3l-4.7-4L40.7,86L37,81.1l-5.1,3.5L29.2,79            l-5.7,2.4l-1.4-6l-6.1,1.1l-0.2-6.2l-6.2-0.2l1.1-6.1l-6-1.4L7,56.8l-5.6-2.7L4.9,49L0,45.3L4.5,41l-4-4.7L5.8,33l-3-5.5l5.9-2.1            l-1.8-6l6.2-0.8l-0.5-6.2l6.2,0.5l0.8-6.2l6,1.8l2.1-5.9l5.5,3l3.2-5.3l4.7,4L45.3,0L49,4.9l5.1-3.5L56.8,7l5.7-2.4l1.4,6l6.1-1.1            l0.2,6.2l6.2,0.2L75.3,22l6,1.4L79,29.2l5.6,2.7L81.1,37l4.9,3.8L81.5,45l4,4.7L80.2,53l3,5.5l-5.9,2.1l1.8,6L73,67.3L73.4,73.4z"></path>
+                          </svg>
+                        </div>
+                        <div class="pricing-header">
+                          <h5>Standard</h5>
+                          <div class="price"><span>$32.89</span><span>/monthly</span></div>
+                        </div>
+                        <div class="pricing-body">
+                          <ul class="list">
+                            <li><span>10GB Storage amount</span></li>
+                            <li>2 Users</li>
+                            <li><span class="icon icon-secondary-2 linearicons-cross2"></span></li>
+                            <li>20 MySQL Databases</li>
+                          </ul>
+                        </div>
+                        <div class="pricing-footer"><a class="button button-primary" href="#">Buy now!</a></div>
+                      </div>
+                    </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="pricing-table-wrap">
+                      <div class="pricing-table">
+                        <div class="pricing-label"><span></span>
+                          <svg width="86px" height="86px" viewbox="0 0 86 86">
+                            <path d="M73.4,73.4L67.3,73l-0.8,6.2l-6-1.8l-2.1,5.9l-5.5-3l-3.2,5.3l-4.7-4L40.7,86L37,81.1l-5.1,3.5L29.2,79            l-5.7,2.4l-1.4-6l-6.1,1.1l-0.2-6.2l-6.2-0.2l1.1-6.1l-6-1.4L7,56.8l-5.6-2.7L4.9,49L0,45.3L4.5,41l-4-4.7L5.8,33l-3-5.5l5.9-2.1            l-1.8-6l6.2-0.8l-0.5-6.2l6.2,0.5l0.8-6.2l6,1.8l2.1-5.9l5.5,3l3.2-5.3l4.7,4L45.3,0L49,4.9l5.1-3.5L56.8,7l5.7-2.4l1.4,6l6.1-1.1            l0.2,6.2l6.2,0.2L75.3,22l6,1.4L79,29.2l5.6,2.7L81.1,37l4.9,3.8L81.5,45l4,4.7L80.2,53l3,5.5l-5.9,2.1l1.8,6L73,67.3L73.4,73.4z"></path>
+                          </svg>
+                        </div>
+                        <div class="pricing-header">
+                          <h5>Business</h5>
+                          <div class="price"><span>$76.89 </span><span>/monthly</span></div>
+                        </div>
+                        <div class="pricing-body">
+                          <ul class="list">
+                            <li><span>10GB Storage amount</span></li>
+                            <li>5 Users</li>
+                            <li><span class="icon icon-primary linearicons-check"></span></li>
+                            <li>35 MySQL Databases</li>
+                          </ul>
+                        </div>
+                        <div class="pricing-footer"><a class="button button-primary" href="#">Buy now!</a></div>
+                      </div>
+                    </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="pricing-table-wrap">
+                      <div class="pricing-table">
+                        <div class="pricing-label"><span></span>
+                          <svg width="86px" height="86px" viewbox="0 0 86 86">
+                            <path d="M73.4,73.4L67.3,73l-0.8,6.2l-6-1.8l-2.1,5.9l-5.5-3l-3.2,5.3l-4.7-4L40.7,86L37,81.1l-5.1,3.5L29.2,79            l-5.7,2.4l-1.4-6l-6.1,1.1l-0.2-6.2l-6.2-0.2l1.1-6.1l-6-1.4L7,56.8l-5.6-2.7L4.9,49L0,45.3L4.5,41l-4-4.7L5.8,33l-3-5.5l5.9-2.1            l-1.8-6l6.2-0.8l-0.5-6.2l6.2,0.5l0.8-6.2l6,1.8l2.1-5.9l5.5,3l3.2-5.3l4.7,4L45.3,0L49,4.9l5.1-3.5L56.8,7l5.7-2.4l1.4,6l6.1-1.1            l0.2,6.2l6.2,0.2L75.3,22l6,1.4L79,29.2l5.6,2.7L81.1,37l4.9,3.8L81.5,45l4,4.7L80.2,53l3,5.5l-5.9,2.1l1.8,6L73,67.3L73.4,73.4z"></path>
+                          </svg>
+                        </div>
+                        <div class="pricing-header">
+                          <h5>Professional</h5>
+                          <div class="price"><span>$89.89</span><span>/monthly</span></div>
+                        </div>
+                        <div class="pricing-body">
+                          <ul class="list">
+                            <li><span>10GB Storage amount</span></li>
+                            <li>Unlimited users</li>
+                            <li><span class="icon icon-primary linearicons-check"></span></li>
+                            <li>50 MySQL Databases</li>
+                          </ul>
+                        </div>
+                        <div class="pricing-footer"><a class="button button-primary" href="#">Buy now!</a></div>
+                      </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+      {{!-- <!--testimonials-->
+      <section class="section parallax-container context-dark" data-parallax-img="images/bg-image-2.jpg">
+        <div class="parallax-content">
+          <div class="container section-lg text-center" id="clients">
+            <h4 class="heading-decorated">WHAT PEOPLE SAY</h4>
+            <!-- Owl Carousel-->
+            <div class="owl-carousel" data-items="1" data-stage-padding="15" data-loop="true" data-margin="30" data-dots="true" data-nav="false" data-autoplay="true">
+              <div class="item">
+                <!-- Quote default-->
+                <div class="quote-default">
+                  <div class="quote-default__image"><img src="images/deborah-quagmire-120x120.jpg" alt="" width="120" height="120"/>
+                  </div>
+                  <div class="quote-default__text">
+                    <p class="q">Since I’m not a real pro in web design, I love to use these ready-made and beautifully looking templates. They are available at very affordable prices and they save you a lot of time, and deliver from a lot of sweat and tears!</p>
+                  </div>
+                  <p class="quote-default__cite">Jane Smith</p>
+                </div>
+              </div>
+              <div class="item">
+                <!-- Quote default-->
+                <div class="quote-default">
+                  <div class="quote-default__image"><img src="images/benedict-arnold-120x120.jpg" alt="" width="120" height="120"/>
+                  </div>
+                  <div class="quote-default__text">
+                    <p class="q">This template has everything I was looking for my business website to have. From easy-to-customize pages to flawlessly working web tools, Aurona is my number one choice!</p>
+                  </div>
+                  <p class="quote-default__cite">James Wilson</p>
+                </div>
+              </div>
+              <div class="item">
+                <!-- Quote default-->
+                <div class="quote-default">
+                  <div class="quote-default__image"><img src="images/testimonials-3-120x120.jpg" alt="" width="120" height="120"/>
+                  </div>
+                  <div class="quote-default__text">
+                    <p class="q">Thank you for such an affordable and multipurpose template! It’s easy to configure and use, and what’s more important it looks great. It’s just what I wanted for my website. Keep doing a great job, I’m sure to become a returning customer!</p>
+                  </div>
+                  <p class="quote-default__cite">Ann Williams</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+
+      {{!-- <section class="section-md bg-default text-center">
+        <div class="container">
+          <h4 class="heading-decorated">Frequently Asked Questions</h4>
+          <div class="row justify-content-md-center justify-content-lg-between row-50 align-items-center text-left wow fadeIn" data-wow-delay="0.3s">
+            <div class="col-md-8 col-lg-6">
+              <div id="accordion" role="tablist">
+                      <!-- Bootstrap card-->
+                      <div class="card card-custom">
+                        <div class="card-custom-heading" id="accordionHeading1" role="tab">
+                          <h5 class="card-custom-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#accordionCollapse1" aria-controls="accordionCollapse1">What are the advantages of purchasing a website template?</a>
+                          </h5>
+                        </div>
+                        <div class="card-custom-collapse collapse" id="accordionCollapse1" role="tabpanel" aria-labelledby="accordionHeading1">
+                          <div class="card-custom-body">
+                            <p>The major advantage is price: You get a high quality design for just $20-$70. You don’t have to hire a web designer or web design studio. Second advantage is time frame: It usually takes 5-15 days for a good designer to produce a web page of such quality.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Bootstrap card-->
+                      <div class="card card-custom">
+                        <div class="card-custom-heading" id="accordionHeading2" role="tab">
+                          <h5 class="card-custom-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#accordionCollapse2" aria-controls="accordionCollapse2">Do you provide any scripts with your templates or could you do some custom programming?</a>
+                          </h5>
+                        </div>
+                        <div class="card-custom-collapse collapse" id="accordionCollapse2" role="tabpanel" aria-labelledby="accordionHeading2">
+                          <div class="card-custom-body">
+                            <p>Our templates do not include any additional scripts. Newsletter subscriptions, search fields, forums, image galleries (in HTML versions of Flash products) are inactive. Basic scripts can be easily added at zemez.io If you are not sure that the element you’re interested in is active please contact our Support Chat for clarification.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Bootstrap card-->
+                      <div class="card card-custom">
+                        <div class="card-custom-heading" id="accordionHeading3" role="tab">
+                          <h5 class="card-custom-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#accordionCollapse3" aria-controls="accordionCollapse3">In what formats are your templates available?</a>
+                          </h5>
+                        </div>
+                        <div class="card-custom-collapse collapse" id="accordionCollapse3" role="tabpanel" aria-labelledby="accordionHeading3">
+                          <div class="card-custom-body">
+                            <p>Website templates are available in Photoshop and HTML formats. Fonts are included with Photoshop file. In most templates HTML is compatible with Adobe®, Dreamweaver® and Microsoft Frontpage®.</p>
+                          </div>
+                        </div>
+                      </div>
+              </div>
+            </div>
+            <div class="col-md-7 col-lg-5">
+              <figure><img src="images/home-variant-3-555x500.jpg" alt="" width="555" height="500"/>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+      <!-- Call to Action-->
+      <section class="section-md bg-accent bg-image text-center bg-overlay-darkest" style="background-image: url({{asset "landing/images/nature-writing.jpg"}}); background-position: center;">
+        <div class="container">
+          <div class="row justify-content-md-center">
+            <div class="col-md-11 col-lg-9 col-xl-8"> 
+              <h3 class="heading-decorated">Found something you have questions about, or are interested in?</h3><a class="button button-primary" href="#contacts">Get in touch!</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Posts-->
+      <section class="section-md bg-gray-lighter" id="blog">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <h4 class="heading-decorated">Recent News </h4>
+            </div>
+          </div>
+          <div class="row row-60"> 
+            <!-- Owl Carousel-->
+            <div class="owl-carousel owl-carousel-spacing-2" data-items="1" data-sm-items="2" data-xl-items="3" data-dots="true" data-nav="false" data-stage-padding="15" data-margin="30" data-mouse-drag="false" data-loop="false" data-autoplay="true">
+              {{#get "posts" include="tags,authors" filter="featured:true"}}
+                {{#foreach posts}}
+
+                  <div class="owl-item">
+                    <!-- Post classic-->
+                    <article class="post-classic post-minimal">
+                      {{#if feature_image}}
+                        <a class="post-minimal-image" href="{{url}}"><img src="{{img_url feature_image size="m"}}" alt="{{title}}" width="418" height="315"/></a>
+                      {{/if}}
+                      <div class="post-classic-title">
+                        <h6><a href="{{url}}">{{title}}</a></h6>
+                      </div>
+                      <div class="post-meta">
+                        <div class="group">
+                          <span>
+                            <time datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
+                          </span>
+                          <span class="meta-author" href="#">
+                            {{#has author="count:>2"}}Multiple authors{{else}}{{authors}}{{/has}}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="post-classic-body">
+                        <p>{{excerpt}}</p>
+                      </div>
+                    </article>
+                  </div>
+
+                {{/foreach}}
+              {{/get}}
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action-->
+      <section class="section-md bg-accent bg-image text-center bg-overlay-darkest" style="background-image: url({{img_url @site.cover_image size="xl"}}); background-position: center;">
+        <div class="container">
+          <div class="row justify-content-md-center">
+            <div class="col-md-11 col-lg-9 col-xl-8"> 
+              <h3 class="heading-decorated">Want to see more posts?</h3><a class="button button-primary" href="{{@site.url}}/blog">Check out my blog!</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {{!-- <section class="section-md text-center bg-default">
+        <div class="container">
+          <h4 class="heading-decorated">Our Clients</h4>
+          <div class="row row-30">
+            <div class="col-sm-6 col-md-3">
+              <figure class="box-icon-image"><a href="#"><img src="images/company-1-126x102.png" alt="" width="126" height="102"/></a></figure>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <figure class="box-icon-image"><a href="#"><img src="images/company-2-134x102.png" alt="" width="134" height="102"/></a></figure>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <figure class="box-icon-image"><a href="#"><img src="images/company-3-132x102.png" alt="" width="132" height="102"/></a></figure>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <figure class="box-icon-image"><a href="#"><img src="images/company-4-126x102.png" alt="" width="126" height="102"/></a></figure>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <figure class="box-icon-image"><a href="#"><img src="images/company-5-138x102.png" alt="" width="138" height="102"/></a></figure>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <figure class="box-icon-image"><a href="#"><img src="images/company-6-143x102.png" alt="" width="143" height="102"/></a></figure>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <figure class="box-icon-image"><a href="#"><img src="images/company-7-109x102.png" alt="" width="109" height="102"/></a></figure>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <figure class="box-icon-image"><a href="#"><img src="images/company-8-109x102.png" alt="" width="109" height="102"/></a></figure>
+            </div>
+          </div>
+        </div>
+      </section> --}}
+
+      <!-- get a quote-->
+      <section class="bg-gray-lighter object-wrap" id="contacts">
+        <div class="section-lg">
+          <div class="container">
+            <div class="row justify-content-end">
+              <div class="col-lg-5">
+                <h4 class="heading-decorated">Get in Touch</h4>
+                <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" action="https://formspree.io/f/xjvjbgyn" method="POST">
+                    <div class="form-wrap">
+                      <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
+                    <label class="form-label" for="contact-name">Your name</label>
+                    </div>
+                    <div class="form-wrap">
+                        <input class="form-input" id="contact-email" type="email" name="_replyto" data-constraints="@Email @Required">
+                        <label class="form-label" for="contact-email">Your e-mail</label>
+                    </div>
+                    <div class="form-wrap">
+                        <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                        <label class="form-label" for="contact-message">Your message</label>
+                    </div>
+                    <button class="button button-primary" type="submit">send</button>
+                </form>
+                {{!-- <!-- RD Mailform-->
+                <form class="rd-mailform rd-mailform_style-1" data-form-output="form-output-global" data-form-type="contact" method="post" action="{{asset "landing/bat/rd-mailform.php"}}">
+                  <div class="form-wrap">
+                    <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
+                    <label class="form-label" for="contact-name">Your name</label>
+                  </div>
+                  <div class="form-wrap">
+                    <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
+                    <label class="form-label" for="contact-email">Your e-mail</label>
+                  </div>
+                  <div class="form-wrap">
+                    <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                    <label class="form-label" for="contact-message">Your message</label>
+                  </div>
+                  <button class="button button-primary" type="submit">send</button>
+                </form> --}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="object-wrap__body object-wrap__body-sizing-1 object-wrap__body-md-left bg-image" style="background-image: url({{asset "landing/images/contact-form.jpg"}})"></div>
+      </section>
+
+      <!-- Page Footer-->
+      <section class="pre-footer-corporate bg-image-7 bg-overlay-darkest">
+        <div class="container">
+          <div class="row justify-content-sm-center justify-content-lg-start row-30 row-md-60">
+            <div class="col-sm-10 col-md-6 col-lg-10 col-xl-3">
+              {{!-- <a class="brand" href="index.html"><img src="images/logo-invert-108x37.png" alt="" width="108" height="37" srcset="images/logo-invert-216x74.png 2x"/></a> --}}
+              <p>kblagoev.com is the personal web page of Kiril Panayotov Blagoev, consisting of his fevered mutterings about
+                science, languages, maths, software engineering, and other less relevant topics which seem to interest him for
+                whatever reason. Consider checking out his other projects, or writing him a line or two if you find something
+                interesting you would like to discuss.</p>
+            </div>
+            <div class="col-sm-10 col-md-6 col-lg-3 col-xl-3">
+              <h6>Navigation</h6>
+              <ul class="list-xxs list-primary">
+                <li><a href="https://kugelkuh.com">Kugelkuh</a></li>
+                <li><a href="{{@site.url}}/gists">GitHub Gists</a></li>
+                <li><a href="{{@site.url}}/flowfield">Flowfield visualisation</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Latest Posts</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-10 col-md-6 col-lg-4 col-xl-3">
+              <h6>Contacts</h6>
+              <ul class="list-xs">
+                <li>
+                  <dl class="list-terms-minimal">
+                    <dt>E-mail</dt>
+                    <dd><a class="link-primary" href="mailto:blagoeffkp@gmail.com">blagoeffkp@gmail.com</a></dd>
+                  </dl>
+                </li>
+                {{!-- <li>
+                  <dl class="list-terms-minimal">
+                    <dt>Address</dt>
+                    <dd>4578 Marmora Road, Glasgow, D04 89GR</dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl class="list-terms-minimal">
+                    <dt>Phones</dt>
+                    <dd>
+                      <ul class="list-semicolon">
+                        <li><a href="tel:#">(800)&nbsp;123-0045;</a></li>
+                        <li><a href="tel:#">(800)&nbsp;123-0045</a></li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl class="list-terms-minimal">
+                    <dt>E-mail</dt>
+                    <dd><a class="link-primary" href="mailto:#">info@demolink.org</a></dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl class="list-terms-minimal">
+                    <dt>We are open</dt>
+                    <dd>Mn-Fr: 10 am-8 pm</dd>
+                  </dl>
+                </li> --}}
+              </ul>
+            </div>
+            {{!-- <div class="col-sm-10 col-md-6 col-lg-5 col-xl-3">
+              <div class="google-map-footer">
+                <!--Please, add the data attribute data-key="YOUR_API_KEY" in order to insert your own API key for the Google map.-->
+                <!--Please note that YOUR_API_KEY should replaced with your key.-->
+                <!--Example: <div class="google-map-container" data-key="YOUR_API_KEY">-->
+                <div class="google-map-container" data-center="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-zoom="5" data-icon="images/gmap_marker.png" data-icon-active="images/gmap_marker_active.png" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:60}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:40},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;administrative.province&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;lightness&quot;:30}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ef8c25&quot;},{&quot;lightness&quot;:40}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.stroke&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.park&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b6c54c&quot;},{&quot;lightness&quot;:40},{&quot;saturation&quot;:-40}]},{}]">
+                  <div class="google-map"></div>
+                  <ul class="google-map-markers">
+                    <li data-location="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-description="9870 St Vincent Place, Glasgow"></li>
+                  </ul>
+                </div>
+              </div>
+            </div> --}}
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer-corporate bg-gray-darkest">
+        <div class="container">
+          <div class="footer-corporate__inner">
+            <p class="rights"><span>kblagoev.com</span><span>&nbsp;&copy;&nbsp;</span><span id="copyright-year"></span>. All Rights Reserved</p>
+            <ul class="list-inline-xxs">
+              <li>
+                <a class="icon icon-xxs icon-gray-darker fa fa-github" href="https://github.com/tihawk" target="_blank" rel="noopener"></a>
+              </li>
+              {{#if @site.facebook}}
+              <li>
+                <a href="{{facebook_url @site.facebook}}" class="icon icon-xxs icon-gray-darker fa fa-facebook" target="_blank" rel="noopener"></a>
+              </li>
+              {{/if}}
+              {{#if @site.twitter}}
+              <li>
+                <a href="{{twitter_url @site.twitter}}" class="icon icon-xxs icon-gray-darker fa fa-twitter" target="_blank" rel="noopener"></a>
+              </li>
+              {{/if}}
+              <li>
+                <a class="icon icon-xxs icon-gray-darker fa fa-linkedin" href="https://linkedin.com/in/kiril-panayotov-blagoev-1bb409154/" target="_blank" rel="noopener"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Global Mailform Output-->
+    {{!-- <div class="snackbars" id="form-output-global"></div> --}}
+    <!--+photoswipe()-->
+    <!-- Javascript-->
+    <script src="{{asset "landing/js/core.min.js"}}"></script>
+    <script src="{{asset "landing/js/script.js"}}"></script>
+    <!-- coded by Houdini-->
+  </body>
+</html>
