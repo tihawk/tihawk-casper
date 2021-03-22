@@ -199,18 +199,38 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-5">
-                {{!-- <h4 class="heading-decorated">About Kiril</h4> --}}
-                <p>Kiril P. Blagoev is a software engineer, physicist and person who posts stuff on the internet. Originally a sailor going 
+                <h4 class="heading-decorated">About</h4>
+                <p>Kiril P. Blagoev is a human, software engineer, physicist and person who posts stuff on the internet. Originally a mariner sailing 
                 around the world, Kiril now works from home, and travels into nature any time he decides to ponder about the universe, and humanity's
                 place in it (which he does probably more often than he should).
-                <br /><br />
+                </p>
+                <p>
                 Kiril writes blog posts on his personal blog <a class="link-primary" href="{{@site.url}}/blog">kBlagoev.com</a>, and constantly makes plans
                 to finish his many other projects, which I'm sure he will one day get to.
-                <br /><br />
-                On this page these ongoing or otherwise projects are shamelessly curated, in the hopes that they bring the joy of discovery to someone. If 
+                </p>
+                <p>
+                On this page these ongoing or otherwise projects are shamelessly self-curated, in the hopes that they bring the joy of discovery to someone. If 
                 you find yourself engrossed in similar endeavours as the ones you've come upon here, don't forget to contact Kiril, or subscribe to his blog and 
                 share your opinions and own ideas on the subject of your interest.
                 </p>
+                <ul class="list-inline-xxs">
+                  <li>
+                    <a class="icon icon-md icon-gray-darker fa fa-github" href="https://github.com/tihawk" target="_blank" rel="noopener"></a>
+                  </li>
+                  {{#if @site.facebook}}
+                  <li>
+                    <a href="{{facebook_url @site.facebook}}" class="icon icon-md icon-gray-darker fa fa-facebook" target="_blank" rel="noopener"></a>
+                  </li>
+                  {{/if}}
+                  {{#if @site.twitter}}
+                  <li>
+                    <a href="{{twitter_url @site.twitter}}" class="icon icon-md icon-gray-darker fa fa-twitter" target="_blank" rel="noopener"></a>
+                  </li>
+                  {{/if}}
+                  <li>
+                    <a class="icon icon-md icon-gray-darker fa fa-linkedin" href="https://linkedin.com/in/kiril-panayotov-blagoev-1bb409154/" target="_blank" rel="noopener"></a>
+                  </li>
+                </ul>
                 {{!-- <div class="row row-30">
                   <div class="col-xl-6">
                     <!-- Blurb minimal-->
@@ -965,7 +985,7 @@
         <div class="container">
           <div class="row justify-content-md-center">
             <div class="col-md-11 col-lg-9 col-xl-8"> 
-              <h3 class="heading-decorated">Found something you have questions about, or are interested in?</h3><a class="button button-primary" href="#contacts">Get in touch!</a>
+              <h3 class="heading-decorated">Found something you have questions about, or are interested in?</h3><a class="button button-primary" data-caption-animate="fadeInUpSmall" data-caption-delay="350" href="#contacts" data-custom-scroll-to="contacts">Get in touch!</a>
             </div>
           </div>
         </div>
