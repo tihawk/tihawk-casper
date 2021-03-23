@@ -5188,7 +5188,8 @@ h4 + .owl-carousel {
 }
 
 .owl-prev:before {
-	content: '\e93b';
+	font-size: 2em;
+	content: '\2190';
 }
 
 .owl-next {
@@ -5196,7 +5197,8 @@ h4 + .owl-carousel {
 }
 
 .owl-next:before {
-	content: '\e93c';
+	font-size: 2em;
+	content: '\2192';
 }
 
 /*

@@ -381,27 +381,7 @@
                 <li><a data-isotope-filter="lang" data-isotope-group="gallery" href="#">Languages</a></li>
                 <li><a data-isotope-filter="soft" data-isotope-group="gallery" href="#">Software</a></li>
               </ul>
-              <div class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery" data-lightgallery="group">
-                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="knots"><a class="img-thumbnail-variant-3" href="{{@site.url}}/blog/ropework-gallery/"><img src="{{asset "landing/images/portfolio/knots-gallery.jpg"}}" alt="" width="418" height="315"/><span class="label-custom label-white">Link</span>
-                          <div class="caption"><span class="icon hover-top-element linearicons-folder-picture"></span>
-                            <ul class="list-inline-tag hover-top-element">
-                              <li>Knots Gallery</li>
-                            </ul>
-                            <p class="heading-5 hover-top-element">blog gallery</p>
-                            <div class="divider"></div>
-                            <p class="small hover-bottom-element">A gallery of Kiril's decorative ropework</p><span class="icon arrow-right linearicons-arrow-right"></span>
-                          </div></a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="phys"><a class="img-thumbnail-variant-3" href="{{@site.url}}/flowfield/"><img src="{{asset "landing/images/portfolio/flowfield-screenshot.png"}}" alt="" width="418" height="315"/><span class="label-custom label-white">Link</span>
-                          <div class="caption"><span class="icon hover-top-element linearicons-folder-picture"></span>
-                            <ul class="list-inline-tag hover-top-element">
-                              <li>Fieldflow</li>
-                            </ul>
-                            <p class="heading-5 hover-top-element">simulation visualisation</p>
-                            <div class="divider"></div>
-                            <p class="small hover-bottom-element">A small visualisation of particles flowing through a force field. Check out Psychedelia mode!</p><span class="icon arrow-right linearicons-arrow-right"></span>
-                          </div></a>
-                </div>
+              <div id="projects-div" class="isotope row" data-isotope-layout="fitRows" data-isotope-group="gallery" data-lightgallery="group">
                 {{!-- <div class="col-12 col-md-6 col-lg-4 isotope-item" data-filter="Category 1"><a class="img-thumbnail-variant-3" href="images/portfolio-2-1200x600.jpg" data-lightgallery="item">
                           <figure><img src="images/portfolio-2-418x315.jpg" alt="" width="418" height="315"/>
                           </figure>
@@ -1001,7 +981,7 @@
           </div>
           <div class="row row-60"> 
             <!-- Owl Carousel-->
-            <div class="owl-carousel owl-carousel-spacing-2" data-items="1" data-sm-items="2" data-xl-items="3" data-dots="true" data-nav="false" data-stage-padding="15" data-margin="30" data-mouse-drag="false" data-loop="false" data-autoplay="true">
+            <div class="owl-carousel owl-carousel-spacing-2" data-items="1" data-sm-items="2" data-xl-items="3" data-dots="false" data-nav="true" data-stage-padding="15" data-margin="30" data-mouse-drag="true" data-loop="true" data-autoplay="true">
               {{#get "posts" include="tags,authors" filter="featured:true"}}
                 {{#foreach posts}}
 
@@ -1236,6 +1216,6 @@
     <!-- Javascript-->
     <script src="{{asset "landing/js/core.min.js"}}"></script>
     <script src="{{asset "landing/js/script.js"}}"></script>
-    <!-- coded by Houdini-->
+    <script src="{{asset "landing/js/projects.js"}}"></script>
   </body>
 </html>
