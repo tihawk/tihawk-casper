@@ -33,12 +33,23 @@ function setup() {
     background(bgc);
 
     //html elements
+    const buttonColor = ['color', 'black']
+
     this.parentDiv = createDiv('Controls');
     parentDiv.style('background-color', 'rgba(150, 150, 150, 0.6)');
     parentDiv.style('color', 'white');
     parentDiv.style('display', 'none');
     // parentDiv.position(0, 20);
     parentDiv.parent('options-wrapper')
+    this.closeBtn = createButton('X');
+    this.closeBtn.style(...buttonColor)
+    this.closeBtn.style('margin-left', '8px')
+    parentDiv.child(closeBtn);
+    closeBtn.mousePressed(clearScreen);
+    closeBtn.mouseClicked(()=>{
+        parentDiv.style('display', 'none');
+        isShowControls = false;
+    });
     this.fr = createP();
     parentDiv.child(fr);
     this.isTimeDepCheck = createCheckbox('Time-dependent field', isTimeDep);
@@ -65,6 +76,7 @@ function setup() {
     this.particleNumberSlider = createSlider(500, 10000, 2000);
     parentDiv.child(particleNumberSlider);
     this.setPartNumBtn = createButton('Set');
+    this.setPartNumBtn.style(...buttonColor)
     parentDiv.child(setPartNumBtn);
     setPartNumBtn.mousePressed(setParticleNumber);
     isPsychedeliaCheck = createCheckbox('Psychedelia!', isPsychedelia);
@@ -73,18 +85,13 @@ function setup() {
         isPsychedelia = !isPsychedelia;
     });
     this.clearBtn = createButton('Clear');
+    this.clearBtn.style(...buttonColor)
     parentDiv.child(clearBtn);
     clearBtn.mousePressed(clearScreen);
-    this.closeBtn = createButton('Close');
-    parentDiv.child(closeBtn);
-    closeBtn.mousePressed(clearScreen);
-    closeBtn.mouseClicked(()=>{
-        parentDiv.style('display', 'none');
-        isShowControls = false;
-      });
   
     this.isShowControls = false;
     this.optionsBtn = createButton('Show Options');
+    this.optionsBtn.style(...buttonColor)
     // optionsBtn.position(0, 0);
     optionsBtn.parent('options-wrapper')
     optionsBtn.mouseClicked(()=>{
